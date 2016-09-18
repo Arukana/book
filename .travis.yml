@@ -1,0 +1,19 @@
+---
+language: python
+sudo: false
+os:
+  - osx
+python:
+  - 2.7
+before_install:
+  - brew install graphviz
+  - mkdir -p texlive && curl -L https://github.com/urdh/texlive-blob/releases/download/20160619/texlive.tar.xz | tar -JxC texlive
+install:
+  - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+  - pip install dot2tex
+  - pip install graphviz
+  - tlmgr update --self --all
+  - tlmgr install babel-french
+script:
+  - make a4
+  - make c5
