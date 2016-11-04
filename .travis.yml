@@ -8,6 +8,7 @@ before_install:
   - sudo apt-get install -y --no-install-recommends graphviz
   - mkdir -p $HOME/texmf
   - tlmgr init-usertree
+  - sudo tlmgr option repository ftp://tug.org/historic/systems/texlive/2015/tlnet-final 
   - sudo tlmgr update --self --all
   - sudo tlmgr install ctex l3kernel xecjk l3packages latex
   - sudo tlmgr install geometry fontspec fandol ulem zhnumber
