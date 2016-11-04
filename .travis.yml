@@ -16,3 +16,9 @@ install:
 script:
   - make a4
   - make c5
+addons:
+  apt:
+      packages:
+            - texlive-latex-recommended
+                  - texlive-latex-extra
+                  - texlive-fonts-recommended
