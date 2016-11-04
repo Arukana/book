@@ -9,7 +9,6 @@ before_install:
   - brew install graphviz
   - mkdir -p texlive && curl -L https://github.com/urdh/texlive-blob/releases/download/20160619/texlive.tar.xz | tar -JxC texlive
 install:
-  - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
   - pip install dot2tex
   - pip install graphviz
   - tlmgr update --self --all
