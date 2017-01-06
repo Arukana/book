@@ -1,0 +1,46 @@
+
+!1 API Neko
+   |-> !! struct LibraryState !!
+   |-> Accéder à une image
+   |-> Info-bulle
+   '-> Création de modules multi-langage
+
++A Module Graphique
+   |-> Parseur de fichier Texel
+   |   |_ .neko/texels
+   |-> Parseur de fichier Sprite
+   |   |_ .neko/sprites
+   '-> Editeur graphique
+
+AJ Fonctionnement du principe des librairies dynamiques
+   |-> Librairies dynamiques
+   |   |= Liens dynamiques
+   |   |  |_ CFFI
+   |   |  |_ Wrapper
+   |   |  |_ Compilation (gcc -shared -fPIC)
+   |   |  |  |_ *.dylib | *.so
+   |   |  |_ Montage dynamique (mount)
+   |   |     |_ .neko/git
+   |   |     |_ .neko/lib
+   |   '= Evenements :
+   |      |_ Processus
+   |      |_ Inputs/Outputs
+   |      |_ Idle
+   |
+   '-> Segv quand le module Segv
+
+AJ Rédiger une libnya dans un autre langage?
+   '-> Exemples :
+       |_ C
+       |_ Rust
+       |_ Python
+
++o Gestion des Processus
+   |-> Interpréteur de commande `neko [command] [library]`
+   '-> Child Shell (fork)
+
++o Fenêtre Graphique
+   |-> GFX && GFX-Text
+   |-> Parseur VT100 (Outputs write)
+   |   |_ struct Character
+   '-> Gestion des Inputs
