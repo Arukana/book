@@ -1,4 +1,64 @@
 
+# Organisation par modules
+
+-- Neko
+   |-> !! struct LibraryState !!
+   |-> Accéder à une image
+   |-> Info-bulle
+   |-> Création de modules multi-langage
+   |-> Librairies dynamiques
+   |   |= Liens dynamiques
+   |   |  |- CFFI
+   |   |  |- Wrapper
+   |   |  |- Compilation (gcc -shared -fPIC)
+   |   |  |  |_ *.dylib | *.so
+   |   |  |- Montage dynamique (mount)
+   |   |  |  |_ .neko/git
+   |   |__|__|_ .neko/lib
+   |-> Interpréteur de commande `neko [command] [library]`
+   '-> Segv quand le module Segv
+
+-- Pty-Proc
+   |-> Matrice Display
+   |-> Evenements :
+   |   |_ Processus
+   |   |_ Inputs/Outputs
+   |   |_ Idle
+   |-> Child Shell (fork)
+   '-> Parseur VT100 (Outputs write)
+       |_ struct Character
+
+-- Libnya
+   |-> C
+   |-> Rust
+   |-> Haskell
+   '-> Python
+
+-- FFI
+   |-> C
+   |-> Rust
+   |-> Lisp
+   '-> Python
+
+-- Editor
+   |-> Parseur de fichier Texel
+   |   |_ .neko/texels
+   |-> Parseur de fichier Sprite
+   |   |_ .neko/sprites
+   '-> Editeur graphique
+
+-- nTerm
+   |-> GFX && GFX-Text
+   '-> Gestion des Inputs
+
+-- Image2Font
+   '-> Génération d'image pour Terminal
+
+
+________________________________________________________________________________
+
+# Organisation par partie
+
 !1 API Neko
    |-> !! struct LibraryState !!
    |-> Accéder à une image
@@ -26,7 +86,6 @@ AJ Fonctionnement du principe des librairies dynamiques
    |      |_ Processus
    |      |_ Inputs/Outputs
    |      |_ Idle
-   |
    '-> Segv quand le module Segv
 
 AJ Rédiger une libnya dans un autre langage?
