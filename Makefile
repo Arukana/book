@@ -2,13 +2,10 @@ NAME="neko"
 LATEXCMD="xelatex --shell-escape --enable-write18 %O %S"
 LATEXMKOPTS=-pdflatex=$(LATEXCMD) -pdf -dvi- -ps- -bibtex
 
-.PHONY: default info all a4 c5 mclean-a4 mclean-c5 clean-a4 clean-c5
+.PHONY: default all a4 c5 mclean-a4 mclean-c5 clean-a4 clean-c5
 .SILENT: info clean-a4 clean-c5 mclean-a4 mclean-c5 dclean-a4 dclean-c5
 
-default: info
-
-info:
-	echo "Please make a specific target (a4 or c5), or explicitly run \"make all\"."
+default: a4
 
 all: a4 c5
 
