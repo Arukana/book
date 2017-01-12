@@ -153,7 +153,7 @@ L'organisation GitHub $\organization$ de philosophie \href{https://fr.wikipedia.
 
 \subsection{Utilisation}
 
-La constante d’environnement textit{NEKO\_PATH} pourra être définit à \enquote{HOME/.neko} et comprendra les sous-répertoires \textit{lib}, \textit{rep}, \textit{texel} et \textit{sprite}. Sinon, les href{https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle}{bibliothèques} de l'organisation $\name$ ceux reporterons à constante \textit{CARGO_MANIFEST_DIR} de valeurs relatives aux répertoires contenant les \href{https://en.wikipedia.org/wiki/Manifest_file}{fichiers manifests}.
+La constante d’environnement {\textit{NEKO\_PATH}} pourra être définie à \enquote{HOME/.neko} et comprendra les sous-répertoires {\textit{lib}}, {\textit{rep}}, {\textit{texels}} et {\textit{sprites}}. Sinon, les \href{https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle}{bibliothèques} de l'organisation $\name$ ceux reporterons à constante \textit{CARGO\_MANIFEST\_DIR} de valeurs relatives aux répertoires contenant les \href{https://en.wikipedia.org/wiki/Manifest_file}{fichiers manifests}.
 
 \subsubsection{Programme $\program$ \textendash{\href{https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande}{CLI}}\textendash{}}
 
@@ -177,7 +177,7 @@ La constante d’environnement textit{NEKO\_PATH} pourra être définit à \enqu
 
 \subsubsection{Commande $\program$ \textendash{\href{https://en.wikipedia.org/wiki/Shell_builtin}{builtin}\textendash{}}}
 
-Le programme $\program$ substitura la commande \enquote{neko}(1) pour et uniquement pour son processus enfant qui sera à l'occurrence notre \href{https://fr.wikipedia.org/wiki/Interpr%C3%A9teur_de_commandes}{d'interprétation de commandes}. \\
+Le programme $\program$ substitura la commande \enquote{neko}(1) pour son processus enfant uniquement et qui sera à l'occurrence notre \href{https://fr.wikipedia.org/wiki/Interpr%C3%A9teur_de_commandes}{interpréteur de commandes}. \\
 
 Cette commande comprend les options si-suivantes: \\
 
@@ -200,7 +200,12 @@ Cette commande comprend les options si-suivantes: \\
     \begin{minipage}{\textwidth}
     \centering
         \begin{tabular}{p{.50\textwidth}p{.50\textwidth}}
-            \textbf{void start\(t_lbstat *state, void **save\)} & Imprime ce menu d'aide \\
+            \textbf{void build (t\_lbstat *lib, void **data)} & A l'installation du module \\
+            \textbf{void start (t\_lbstat *lib, void **data)} & Au démarrage du programme Neko \\
+            \textbf{void idle (t\_lbstat *lib, void **data)} & Appel régulier en cas d'absence d'événements \\
+            \textbf{void command (t\_lbstat *lib, void **data, char *command)} & Une commande est entrée au shell(1) \\
+            \textbf{void end (t\_lbstat *lib, void **data)} & A l'arrêt du programme Neko \\
+            \textbf{void destroy (t\_lbstat *lib, void **data)} & A la désinstallation du module \\
         \end{tabular}
     \end{minipage}
 %    \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
@@ -352,6 +357,7 @@ digraph graphic {
     Bust = b'b',
     Lying = b'l',
     Seiza = b's',
+    Behind = b'b',
   "];
 
   nodeSheet [label="Enum Sheet<Default + Display + Debug + Clone + Copy + Eq + PartialEq + Hash>\n
@@ -366,9 +372,12 @@ digraph graphic {
     Love = b'l',
     Malicious = b'm',
     Misunderstanding = b'i',
+    Normal = b'n',
+    Playing = b'p',
     Shocked = b'o',
     Sleepy = b's',
-	Speechless = b'e',
+	  Speechless = b'e',
+    Surprised = b'u',
   "];
 
   nodePosture -> nodeGraphic;
