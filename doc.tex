@@ -1,7 +1,9 @@
 \documentclass{report}
 
+\newcommand{\organization}{\textit{Arukana}}
 \newcommand{\name}{\textit{Arcana Azurea Pitou}}
-\newcommand{\program}{\textit{NEKO}}
+\newcommand{\program}{\textit{neko}}
+\newcommand{\dependency}{\textit{editeur}}
 
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
@@ -19,6 +21,12 @@
 \usepackage{titlesec}
 \usepackage{csquotes}
 \usepackage{hyperref}
+\usepackage{keystroke}
+\usepackage{booktabs}
+\usepackage{color, colortbl}
+\usepackage[labelformat=empty]{caption}
+\usepackage{framed}
+\usepackage[linguistics]{forest}
 
 \hypersetup{
   colorlinks = true,
@@ -105,258 +113,281 @@ Une nékoe \textendash{ ねこみみ }\textendash{ } est un persona d'animé jap
 Le GlyphArt est l'écriture d'une image via des caractères compris dans l'Unicode privé, ce projet démontre ce procédé via
 \href{https://limaconoob.github.io/Image2font}{Image2font}.
 
-$\name$ est une programmeuse nékoe fictive de terminal inventée pour assister son utilisateur.
+$\name$ est une programmeuse nékoe fictive de terminal inventée pour assister des utilisateurs.
 
 \section{Introduction}
 \thispagestyle{empty}
-$\program$ est un prompt nommé $\name$ et qui a pour but d'apporter les Arts, la Culture et une assistance à qui saura utiliser un shell.
+$\name$ est une nékoe de terminal qui a pour but d'apporter les Arts, la Culture et une assistance à qui saura utiliser un shell.
 Humanisée d’émotions et fondée sur l'expérience de la \href{https://fr.wikipedia.org/wiki/Chambre_chinoise}{chambre chinoise}, celle-ci sera donc instruite via des bibliotèques.
 
-Ce prompt lit sur l'entrée standard, modifie l'interface puis imprime une sortie modifiée selon les bibliotèques fournies qui sera interpretée par le shell parent.
+L'organisation GitHub $\organization$ de philosophie \href{https://fr.wikipedia.org/wiki/Libriste}{libriste} fut créée pour distribuer et maintenir communautairement les dépôts nécessaires au développement d'une Nékoe de terminal.
 
-La liste des options est :
-\begin{labeling}{Longer label\quad}
-	\item[\textbf{
-		\textendash p,
-		\textendash\textendash from-part <file.neko.part, ...>}] initialise une liste de 
-			\textendash{ texels}
-				\footnote{ Un texel ou élément de texture est l'unité fondamentale de mesure d'une texture. }
-					\textendash { }.
-	\item[\textbf{
-		\textendash s,
-		\textendash\textendash from-sprite <file.neko.sprite, ...>}] initialise une liste de
-			\textendash{ sprite}
-				\footnote{ Un sprite est une texture délimitée par une surface. }
-					\textendash { }.
-	\item[\textbf{
-		\textendash l,
-		\textendash\textendash from-library <[file.so, ...]>
-	}] monte dynamiquement une liste de bibliotèques depuis un paquet, un dépôt Git ou un fichier.
-\end{labeling}
-
-La liste des options du builtin $\program$ est :
-
-\begin{labeling}{Longer label\quad}
-	\item[\textbf{
-		\textendash m,
-		\textendash\textendash mount <[<name, link, object>, ...]>
-	}] monte dynamiquement une liste de bibliotèques depuis un paquet, un dépôt Git ou un fichier.
-	\item[\textbf{
-		\textendash g,
-		\textendash\textendash graphic <position> [<attribut>, ...]
-	}] change l'expression de $\name$ .
-	\item[\textbf{
-		\textendash s,
-		\textendash\textendash say <[<sentence>, ...]> <delay=1>
-	}] dit une phrase .
-	\item[\textbf{
-		\textendash c,
-		\textendash\textendash call <library> <[<argument>, ...]>
-	}] appelle une bibliotèque avec une liste d'arguments .
-\end{labeling}
-
-\newpage
-
-\section{Module}
-
-\subsection{Bibliothèque Dynamique}
-
-Ce module est l'interface d'une liste de fonctions externes qui seront dynamiquement chargées depuis des bibliothèques partagées.
-
-Seront executées les séquences suivantes :
-
-\begin{labeling}{Longer label\quad}
-	\item[\textbf{Start} quand la bibliothèque est montée.]
-	\item[\textbf{Idle} pour chaque cycle.]
-	\item[\textbf{MousePress} quand le pointeur est pressé dans le terminal.]
-	\item[\textbf{MousePressNeko} quand le pointeur est pressé sur la nékoe.]
-	\item[\textbf{MouseRelease} quand le pointeur est relâché dans le terminal.]
-	\item[\textbf{MouseReleaseNeko} quand le pointeur est relâché sur la nékoe.]
-	\item[\textbf{KeyDown} quand une touche est enfoncée.]
-	\item[\textbf{KeyDownRepeat} quand une touche est maintenue enfoncée $\{2\dots{}N\}$.]
-	\item[\textbf{KeyDownInterval} durant \textit{KeyDownRepeat}, donne l'intervalle : $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$.]
-	\item[\textbf{KeyUp} quand une touche est relâchée.]
-	\item[\textbf{Talk} quand une bibliothèque va dire un message.]
-	\item[\textbf{Call} pour appeler une bibliothèque avec une liste d'arguments.]
-	\item[\textbf{End} quand le processus $\program$ se termine.]
-\end{labeling}
-
-Le retour d'une fonction externe peut manipuler les options de builtins tels que \textbf{Graphic}, \textbf{Say} et \textbf{Call}.
 
 \begin{figure}[!ht]
-  \centering
-  \begin{dot2tex}[dot,scale=0.35]
-digraph graphic {
-  d2tstyleonly = true;
-  node [shape = "box", width = "6", texmode="verbatim", style = "top color=cyan!10,bottom color=cyan!35,draw=cyan!50,rounded corners"];
-  graph [shape = "box", texmode="math", style = "top color=blue!10,bottom color=blue!35,draw=blue!50"];
-
-  nodeEvent [label="Struct Event\n
-    Func<extern C fn(event: c_int, arg: *const c_char) -> *const c_char>\
-	\n
-	+ fn new(fun: extern C fn(c_int, *const c_char) -> *const c_char) -> Self
-	+ unsafe fn run(&self) -> Vec<&str>
-  "];
-
-  nodeLibraryError [label="Enum LibraryError<Display + Debug + Error>\n
-    EmptyEvent
-	HasOnlyStart
-  "];
-
-  nodeLibrary [label="Struct Library<Drop>\n
-	start: Option<Event>
-	+ idle: Option<Event>
-	+ mouse_press: Option<Event>
-	+ mouse_press_neko: Option<Event>
-	+ mouse_release: Option<Event>
-	+ mouse_release_neko: Option<Event>
-	+ key_down: Option<Event>
-	+ key_down_repeat: Option<Event>
-	+ key_down_interval: Option<Event>
-	+ key_up: Option<Event>
-	call: Option<Event>
-	end: Option<Event>\
-    \n
-	+ fn new(libraryname: &str) -> Result<Self>
-  "];
-
-  nodeCompositerError [label="Enum CompositerError<Display + Debug + Error>\n
-    badMount(LibraryError)
-    UmountNotFound
-  "];
-
-  nodeCompositer [label="Struct Compositer<Iterator, Default>\n
-    (BinaryHeap<(usize, (Library, String))>)\
-	\n
-	+ fn mount(libraryname: &str, priority: usize) -> Result<()>
-	+ fn unmount(libraryname: &str) -> Result<()>
-	+ fn call(libraryname: &str, arguments: Vec<&str>) -> Result<()>
-  "];
-
-  nodeEvent -> nodeLibrary
-  nodeLibraryError -> nodeLibrary
-  nodeLibrary -> nodeCompositer
-  nodeCompositerError -> nodeCompositer
-}
-  \end{dot2tex}
-  \caption[Caption for LOF]{ Diagramme UML simplifié du module bibliothèque dynamique. }
-  \label{library}
+    \begin{minipage}{\textwidth}
+    \centering
+		\begin{tabular}{p{.10\textwidth}p{.90\textwidth}}
+			\textbf{\href{https://github.com/Arukana/book/tree/documentation}{Book}} & La documentation du projet $\program$. \\
+            \textbf{\href{https://github.com/Arukana/PtyProc}{PtyProc}} & L'\href{https://fr.wikipedia.org/wiki/Middleware}{intergiciel} \textendash{ \href{https://en.wikipedia.org/wiki/Middleware}{Middleware} }\textendash{ } et l'\href{https://fr.wikipedia.org/wiki/Backend}{arrière-plan} \textendash{ back-end  }\textendash{ } de l'émulateur du terminal \href{https://fr.wikipedia.org/wiki/VT100}{VT100}. \\
+            \textbf{\href{https://github.com/Arukana/Editor}{Editor}} & L'éditeur et la bibliothèque d'expression de la nékoe. \\
+            \textbf{\href{https://github.com/Arukana/Neko.git}{Neko}} & Le programme $\program$. \\
+            \textbf{\href{https://github.com/Arukana/LibNya.git}{LibNya}} & La bibliothèque dynamique de teste du programme $\program$. \\
+            \textbf{\href{https://github.com/Arukana/ffi.git}{ffi}} & L'\href{https://fr.wikipedia.org/wiki/Header}{en-têtes} \textendash{ \href{https://en.wikipedia.org/wiki/Header_(computing)}{header} }\textendash{ } sont les déclarations des structures et énumérations de la nékoe. \\
+	        \textbf{\href{https://github.com/Arukana/Image2font}{Image2font}} & Le convertisseur d'images en une police d’écriture. \\
+            \textbf{\href{https://github.com/Arukana/nTerm}{nTerm}} & L'\href{https://fr.wikipedia.org/wiki/Interface_graphique}{interface graphique} de émulateur. \\
+        \end{tabular}
+		\caption*{
+			\begin{forest}
+			    [Terminal
+					[Neko
+					    [Editeur]
+                        [PtyProc
+						    [Pty]
+					    ]
+					]
+			    ]
+			\end{forest}
+		}
+    \end{minipage}
 \end{figure}
 
-\newpage
+\subsection{Utilisation}
 
-\subsection{Graphique}
+La constante d’environnement textit{NEKO\_PATH} pourra être définit à \enquote{HOME/.neko} et comprendra les sous-répertoires \textit{lib}, \textit{rep}, \textit{texel} et \textit{sprite}. Sinon, les href{https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle}{bibliothèques} de l'organisation $\name$ ceux reporterons à constante \textit{CARGO_MANIFEST_DIR} de valeurs relatives aux répertoires contenant les \href{https://en.wikipedia.org/wiki/Manifest_file}{fichiers manifests}.
 
-Ce module est l'interface d'une liste de primitives telles que des texels et des sprites qui pourront se combiner en nouveaux sprites.
+\subsubsection{Programme $\program$ \textendash{\href{https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande}{CLI}}\textendash{}}
 
 \begin{figure}[!ht]
-  \centering
-  \begin{dot2tex}[dot,scale=0.35]
-digraph graphic {
-  d2tstyleonly = true;
-  node [shape = "box", width = "4.5", texmode="verbatim", style = "top color=cyan!10,bottom color=cyan!35,draw=cyan!50,rounded corners"];
-  graph [shape = "box", texmode="math", style = "top color=blue!10,bottom color=blue!35,draw=blue!50"];
-
-  nodeTexelError [label="Enum TexelError<Display + Debug + Error>\n
-    UnknownTexel
-    ForbiddenGlyph(char)
-  "];
-
-  nodeTexel [label="Enum Texel\n
-    EyeLeft(char)
-    EyeRight(char)
-    EarLeft(char)
-    EarRight(char)
-    Nose(char)
-    Mouth(char)
-    Neck(char)
-	ShoulderLeft(char)
-	ShoulderRight(char)\
-    \n
-    + new(limb: &str, glyph: char) -> Result<Self>
-  "];
-
-  nodeManagerError [label="Enum ManagerError<Display + Debug + Error>\n
-      Duplicate
-      BadTexel(TexelError)
-  "];
-
-  nodeManager [label="Struct Manager<Default>\n
-    texel: HashMap<(Posture, Emotion), Texel>
-	sprite: HashMap<String, Sprite>\
-	\n
-    + insert_texel(&mut self, key: (Posture, Emotion), value: Texel) -> Result<()>
-	+ insert_sprite(&mut self, key: String, value: Sprite) -> Result<()>
-  ", width = 8.5];
-
-  subgraph clusterPostureEmotion {
-    nodePosture [label="Enum Posture\n
-      LotusHandsOnFloor
-      LyingOnSomething
-    "];
-    nodeEmotion [label="Enum Emotion\n
-      Happy
-      Malicious
-      None
-    "];
-  }
-
-  nodeSpriteError [label="Enum SpriteError<Display + Debug + Error>\n
-    EmptyBoard
-  "];
-
-  nodeSprite [label="Struct Sprite\n
-    const MAX_X: usize = 7;
-    const MAX_Y: usize = 10;
-	interval: usize
-    sheet: Vec<(Posture, [[(Emotion, Texel); MAX_X]; MAX_Y])>\
-    \n
-    + new(sheet: Vec<(Posture, [[(Emotion, Texel); MAX_X]; MAX_Y])>, interval: usize) -> Result<Self>
-  ", width = 9];
-
-  nodeTexelError -> nodeTexel;
-  nodeTexel -> nodeSprite;
-  nodeTexel -> nodeManager;
-  nodeManagerError -> nodeManager;
-  nodePosture -> nodeSprite;
-  nodePosture -> nodeManager;
-  nodeEmotion -> nodeSprite;
-  nodeEmotion -> nodeManager;
-  nodeSpriteError -> nodeSprite;
-  nodeSprite -> nodeManager;
-}
-  \end{dot2tex}
-  \caption[Caption for LOF]{ Diagramme UML \footnotemark{} simplifié du module graphique. }
-  \label{graphic}
+    \begin{minipage}{\textwidth}
+    \centering
+        \begin{tabular}{p{.15\textwidth}p{.20\textwidth}p{.65\textwidth}}
+                \textbf{\textendash\textendash help} && Imprime ce menu d'aide \\
+                \textbf{\textendash\textendash version, \textendash{V}} && Imprime la version du programme $\program$ \\
+                \textbf{\textendash\textendash command, \textendash{c}} & [/bin/zsh] & Précise le processus fils. \\
+                \rowcolor{yellow}
+                \textbf{\textendash\textendash repeat, \textendash{r}} & [1000] & Précise le temps de répétition du maintien d'une touche enfoncée tel que $\{2\dots{}N\}$. \\
+                \rowcolor{yellow}
+                \textbf{\textendash\textendash interval, \textendash{i}} & [1000] & Précise le temps d'intervalle durant les répétitions tel que $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
+        \end{tabular}
+    \end{minipage}
+    \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
 \end{figure}
+
+%\subsection{\href{https://fr.wikipedia.org/wiki/Interpr%C3%A8te_(informatique)}{Interpréteur}}
+
+\subsubsection{Commande $\program$ \textendash{\href{https://en.wikipedia.org/wiki/Shell_builtin}{builtin}\textendash{}}}
+
+Le programme $\program$ substitura la commande \enquote{neko}(1) pour et uniquement pour son processus enfant qui sera à l'occurrence notre \href{https://fr.wikipedia.org/wiki/Interpr%C3%A9teur_de_commandes}{d'interprétation de commandes}. \\
+
+Cette commande comprend les options si-suivantes: \\
+
+\begin{figure}[!ht]
+    \begin{minipage}{\textwidth}
+    \centering
+		\begin{tabular}{p{.30\textwidth}p{.16\textwidth}p{.54\textwidth}}
+			\textbf{install <url>} & https://git... & Installe depuis dépôt distant un plugiciel. \\
+			\textbf{uninstall <author@libname>} & Arukana@LibNya & Désinstalle les sources et la bibliothèque dynamique d'un plugiciel \textendash{} \href{https://fr.wikipedia.org/wiki/Plugin}{plugin} \textendash{}. \\
+			\textbf{mount <author@libname> [<priority>]} & Arukana@LibNya 1 & Monte une bibliothèque dynamique avec une priorité de niveau zero. \\
+			\textbf{unmount <author@libname>} & Arukana@LibNya & Démonte une bibliothèque dynamique. \\
+			\textbf[\textbf{update <author@libname>}] & Arukana@LibNya & Révise une bibliothèque dynamique. \\
+		\end{tabular}
+    \end{minipage}
+\end{figure}
+
+\subsection{Interface de fonctions dynamiques \textendash{\href{https://en.wikipedia.org/wiki/Foreign_function_interface}{FFI}}\textendash{}}
+
+\begin{figure}[!ht]
+    \begin{minipage}{\textwidth}
+    \centering
+        \begin{tabular}{p{.50\textwidth}p{.50\textwidth}}
+            \textbf{void start\(t_lbstat *state, void **save\)} & Imprime ce menu d'aide \\
+        \end{tabular}
+    \end{minipage}
+%    \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
+\end{figure}
+
+\section{$\dependency$}
+
+ est l'interface d'une liste de primitives telles que des texels et des sprites qui pourront se combiner en nouveaux sprites. \\
+
+L'$\dependency$ est à la fois : \\
+
+\begin{enumerate}
+	\item Un programme qui selon une liste de primitive permettra de devirer des expressions en commandes.
+	Interface utilisateur en mode texte -\href{https://en.wikipedia.org/wiki/Text-based_user_interface}{TUI}-.
+	\item Une bibliothèque et dépenpence du projet Neko, qui chargera un dictionnaire de \href{https://fr.wikipedia.org/wiki/Sprite_(jeu_vid%C3%A9o)}{lutin} -\href{https://en.wikipedia.org/wiki/Sprite_(computer_graphics)}{sprite}-.
+\end{enumerate}
+
+\subsection{Programme \href{https://en.wikipedia.org/wiki/Text-based_user_interface}{\textendash{TUI}\textendash{}}}
+
+L'$\dependency$ comprend une liste d'animation, de un à seize sprites chacuns. Un sprite sera derivé selon des groupes d'émotions, formant ainsi une multitude expressions. La somme des sprites représente la configuration d'une animation. \\*
+
+\begin{tabbing}
+    Quit <q> \\*
+    bust \\*
+    0 - PT0.200S: Talk \\*
+    \symbol{"E000}\symbol{"E001}\symbol{"E002}\symbol{"E003}\symbol{"E004}\symbol{"E005}\symbol{"E006}\symbol{"E007}\symbol{"E008}\symbol{"E009} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \symbol{"E00A}\symbol{"E00B}\symbol{"E00C}\symbol{"E00D}\symbol{"E00E}\symbol{"E00F}\symbol{"E010}\symbol{"E011}\symbol{"E012}\symbol{"E013} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \symbol{"E014}\symbol{"E015}\symbol{"E016}\symbol{"E017}\symbol{"E018}\symbol{"E019}\symbol{"E01A}\symbol{"E01B}\symbol{"E01C}\symbol{"E01D} \_\_\_\_\_\_\_\_Mo\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \symbol{"E01E}\symbol{"E01F}\symbol{"E020}\symbol{"E021}\symbol{"E022}\symbol{"E023}\symbol{"E024}\symbol{"E025}\symbol{"E026}\symbol{"E027} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \symbol{"E028}\symbol{"E029}\symbol{"E02A}\symbol{"E02B}\symbol{"E02C}\symbol{"E02D}\symbol{"E02E}\symbol{"E02F}\symbol{"E030}\symbol{"E031} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \\*
+    S\_ \\*
+    1 - PT0.200S: NotTalk \\*
+    \symbol{"E000}\symbol{"E001}\symbol{"E002}\symbol{"E003}\symbol{"E004}\symbol{"E005}\symbol{"E006}\symbol{"E007}\symbol{"E008}\symbol{"E009} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ SSS\_\_\_\_\_\_\_ \\*
+    \symbol{"E00A}\symbol{"E00B}\symbol{"E00C}\symbol{"E00D}\symbol{"E00E}\symbol{"E00F}\symbol{"E010}\symbol{"E011}\symbol{"E012}\symbol{"E013} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ SSS\_\_\_\_\_\_\_ \\*
+    \symbol{"E014}\symbol{"E015}\symbol{"E016}\symbol{"E017}\symbol{"E018}\symbol{"E019}\symbol{"E01A}\symbol{"E01B}\symbol{"E01C}\symbol{"E01D} \_\_\_\_\_\_\_\_Mo\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \symbol{"E01E}\symbol{"E01F}\symbol{"E020}\symbol{"E021}\symbol{"E022}\symbol{"E023}\symbol{"E024}\symbol{"E025}\symbol{"E026}\symbol{"E027} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \symbol{"E028}\symbol{"E029}\symbol{"E02A}\symbol{"E02B}\symbol{"E02C}\symbol{"E02D}\symbol{"E02E}\symbol{"E02F}\symbol{"E030}\symbol{"E031} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
+    \\*
+    \_S \\*
+    --Talk --NotTalk Heart:Shocked \\*
+\end{tabbing}
+
+\subsubsection{Raccourcis clavier}
+
+La saisie est adapté selon la disposition des touches du \href{https://en.wikipedia.org/wiki/ADM-3A}{terminal ADM-3A} de la société \href{https://en.wikipedia.org/wiki/Lear_Siegler}{Lear Siegler}.
+
+\begin{figure}[!ht]
+  \begin{minipage}{\textwidth}
+    \centering
+    \begin{tabular}{p{.3\textwidth}p{.7\textwidth}}
+        \toprule
+        \toprule
+            Touche & Description \\
+        \midrule
+            \Ctrl+\keystroke{q}ou\keystroke{q} & Quitter le programme. \\
+            \rowcolor{yellow}
+            \Ctrl+\keystroke{c}ou\keystroke{c} & Copier la commande dans le presse-papier. \\
+            \Home{}ou\keystroke{g} & Sélectionner la première animation. \\
+            \PgUp{}ou\keystroke{H} & Sélectionner l'animation précédente. \\
+            \PgDown{}ou\keystroke{L} & Sélectionner l'animation suivante. \\
+            \End{}ou\keystroke{G} & Sélectionner la dernière animation. \\
+            \keystroke{\{}ou\keystroke{[} & Sélectionner le sprite précédent. \\
+            \keystroke{\}}ou\keystroke{]} & Sélectionner le sprite suivant. \\
+            \LArrow{}ou\keystroke{h} & Sélectionner la cellule de gauche. \\
+            \UArrow{}ou\keystroke{k} & Sélectionner la cellule du haut. \\
+            \DArrow{}ou\keystroke{j} & Sélectionner la cellule du bas. \\
+            \RArrow{}ou\keystroke{l} & Sélectionner la cellule de droite. \\
+            \keystroke{0}...\keystroke{9} & Changer la cellule courrante. \\
+        \bottomrule
+    \end{tabular}
+  \end{minipage}
+  \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{Clipboard}.}
+\end{figure}
+
+\subsubsection{Bibliothèque}
 
 \footnotetext{En génie logiciel, le langage de modélisation orienté objet unifié de l'anglais
 	\enquote{Unified Modeling Language}
 		\textendash{ UML }\textendash{ } est la représentation schématique d'un programme par de l'orienté objet}
 
-\chapter{Deuxieme partie}
+\begin{figure}[!ht]
+  \centering
+  \begin{dot2tex}[dot,scale=0.25]
+digraph graphic {
+  d2tstyleonly = true;
+  node [shape = "box", width = "2.5", texmode="verbatim", style = "top color=cyan!10,bottom color=cyan!35,draw=cyan!50,rounded corners"];
+  graph [shape = "box", texmode="math", style = "top color=blue!10,bottom color=blue!35,draw=blue!50"];
 
-\section{Bibliothèque}
+  nodeGraphic [label="Struct Graphic<Default + Debug + Clone>\n
+    texel: HashMap<Posture, HashMap<Tuple, Vec<Texel>>>,
+    sprite: io::Cursor<Vec<(Sheet, Sprite)>>,
+  "];
 
-Ce chapitre énumère une liste exhaustive de bibliothèques dynamiques issues de langages Libres et qui seront programmées par \enquote{la confrérie des ténèbres} pour apporter une base à ce qui à pour but de s'étendre et évoluer grâce à la communauté.\\*
+  nodeTuple [label="Struct Tuple<Copy + Clone + Debug + Default + Eq + PartialEq + Hash + From>\n
+    + Part,
+    + Emotion,
+  "];
 
-\begin{labeling}{Longer label\quad}
-    \item[\textbf{help-git} \enquote{noob}] Si l'utilisateur utilise plus d'une fois sans succès l'option \textit{push}, la nékoe proposera son aide puis informera des instructions shell à saisir.
-	\item[\textbf{travis-git} \enquote{assistance, information}] Quand l'utilisateur publie une nouvelle version de sa branche et qu'un fichier \textit{.travis} est défini à la racine du projet, alors la nékoe informera son utilisateur du résultat.
-    \item[\textbf{must-sleep} \enquote{medical}] Quand l'utilisateur dépasse dix heures d'activités, la nékoe aura des signes de fatigue et informera une seule fois des conséquences du manque de sommeil sur la productivité.
-    \item[\textbf{lock-terminal} \enquote{assistance}] Après N secondes d'inactivité, la nékoe verrouille le terminal et vit sa vie.
-	\item[\textbf{help-stackoverflow} \enquote{assistance, information}] Si un programme affiche une erreur, la nékoe essaie une recherche sur StackOverflow et propose d'informer l'utilisateur si elle a trouvé une solution.
-	\item[\textbf{repos-dex} \enquote{assistance, information}] Quand l'utilisateur entre dans un projet, la nékoe fournit une description.
-	\item[\textbf{email} \enquote{information}] Quand l'utilisateur reçoit un courriel, la nékoe proposera de le lire.
-	\item[\textbf{man-description} \enquote{help, information}] Lorsque l'utilisateur saisit la commande \textit{man}, la nékoe avant la validation de ce dernier l'informe de la description de la commande.
-	\item[\textbf{hungry} \enquote{social}] Si l'utilisateur clique sur la nékoe, celle-ci prend une expression affamée.
-	\item[\textbf{not-leave-me} \enquote{social}] Pendant que l'utilisateur saisit la commande \textit{exit}, la nékoe essaie des stratagèmes pour ne pas être abandonnée.
-	\item[\textbf{overload} \enquote{social, information}] La lanterne clignote lorsque l'utilisateur surcharge le CPU.
-	\item[\textbf{season} \enquote{social}] La nékoe sera plus vêtue en hiver qu'en été.
-	\item[\textbf{hello} \enquote{social}] La nékoe salue son utilisateur au lancement du terminal.
-	\item[\textbf{wait-make} \enquote{social}] Durant une compilation, la nékoe distraira l'utilisateur avec des histoires.
-	\item[\textbf{orphan-file} \enquote{noob, information}] Avant de saisir une publication, la nékoe avertie de la présence de fichiers orphelins.
-	\item[\textbf{gitignore} \enquote{assistance}] À la création d'un projet, la nékoe propose de créer un .gitignore.
-\end{labeling}
+  nodeDraw [label="Struct Draw<Default + Debug + Clone + IntoIterator>\n
+    posture: Posture,
+    duration: time::Duration,
+    board: io::Cursor<[(Emotion, Texel); SPEC_MAX_XY]>,
+  "];
+
+  nodeTexel [label="Struct Texel<Default + Copy + Clone + Display + Debug + PartielEq>\n
+    part: Part,
+    glyph: char,
+  "];
+
+  nodeSprite [label="Struct Sprite<Default + Clone + IntoIterator>\n
+    texel: HashMap<Tuple, Vec<Texel>>,
+    sheet: io::Cursor<[Draw; SPEC_MAX_DRAW]>,
+    count: usize,
+  "];
+
+  nodePart [label="Enum Part<Default + Display + Debug + Clone + Copy + Eq + PartialEq + Hash>\n
+    None = b'_',
+    ArmLeft = b'a',
+    ArmRight = b'A',
+    Boobs = b'b',
+    Clavicle = b'c',
+    EarLeft = b'e',
+    EarRight = b'E',
+    EyeLeft = b'y',
+    EyeRight = b'Y',
+    HairTop = b'o',
+    HairLeft = b'r',
+    HairRight = b'R',
+    HandLeft = b'd',
+    HandRight = b'D',
+    Mouth = b'm',
+    Tail = b't',
+    Bell = b'l',
+    ExclamationMark = b'x',
+    ExclamationMarks = b'X',
+    Heart = b'h',
+    Hearts = b'H',
+    Lantern = b'n',
+    QuestionMark = b'q',
+    QuestionMarks = b'Q',
+    WoolBall = b'w',
+  "];
+
+  nodePosture [label="Enum Posture<Default + Display + Debug + Clone + Copy + Eq + PartialEq + Hash>\n
+    None = b'_',
+    Talk = b't',
+    NotTalk = b'n',
+    Bust = b'b',
+    Lying = b'l',
+    Seiza = b's',
+  "];
+
+  nodeSheet [label="Enum Sheet<Default + Display + Debug + Clone + Copy + Eq + PartialEq + Hash>\n
+    None = b'_',
+    Bust = b'b',
+  "];
+
+  nodeEmotion [label="Enum Emotion<Default + Display + Debug + Clone + Copy + Eq + PartialEq + Hash>\n
+    None = b'_',
+    Angry = b'a',
+    Happy = b'h',
+    Love = b'l',
+    Malicious = b'm',
+    Misunderstanding = b'i',
+    Shocked = b'o',
+    Sleepy = b's',
+	Speechless = b'e',
+  "];
+
+  nodePosture -> nodeGraphic;
+  nodeTuple -> nodeGraphic;
+  nodeTexel -> nodeGraphic;
+  nodeSheet -> nodeGraphic;
+  nodeSprite -> nodeGraphic;
+  nodeTexel -> nodeSprite;
+  nodeDraw -> nodeSprite;
+  nodePart -> nodeTexel;
+  nodePart -> nodeTuple;
+  nodeEmotion -> nodeTuple;
+  nodePosture -> nodeDraw;
+  nodeTexel -> nodeDraw;
+  nodeEmotion -> nodeDraw;
+}
+  \end{dot2tex}
+  \caption[Caption for LOF]{ Diagramme UML \footnotemark{} simplifié du module graphique. }
+  \label{graphic}
+\end{figure}
 
 \end{document}
