@@ -1,9 +1,20 @@
 \documentclass{report}
 
+\newcommand{\Alpha}{A}
+
 \newcommand{\organization}{\textit{Arukana}}
 \newcommand{\name}{\textit{Arcana Azurea Pitou}}
 \newcommand{\program}{\textit{neko}}
-\newcommand{\dependency}{\textit{editeur}}
+\newcommand{\dependency}{\textit{Editeur}}
+
+\newcommand{\maxX}{10}
+\newcommand{\maxY}{5}
+\newcommand{\maxXY}{\maxX\times{\maxY}}
+\newcommand{\maxDraw}{16}
+\newcommand{\maxDrawMulXY}{\left(\maxDraw\times{\maxXY}\right)}
+\newcommand{\maxEmotion}{5}
+
+\newcommand{\violet}{\rowcolor{violet!10}}
 
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
@@ -27,6 +38,9 @@
 \usepackage[labelformat=empty]{caption}
 \usepackage{framed}
 \usepackage[linguistics]{forest}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 
 \hypersetup{
   colorlinks = true,
@@ -101,51 +115,58 @@
     \symbol{"E01E}\symbol{"E01F}\symbol{"E020}\symbol{"E021}\symbol{"E022}\symbol{"E023}\symbol{"E024}\symbol{"E025}\symbol{"E026}\symbol{"E027}\\*
     \symbol{"E028}\symbol{"E029}\symbol{"E02A}\symbol{"E02B}\symbol{"E02C}\symbol{"E02D}\symbol{"E02E}\symbol{"E02F}\symbol{"E030}\symbol{"E031}\\*
   \end{minipage}
-  \caption[Caption for LOF]{\href{https://en.wikipedia.org/wiki/Wikipedia:Wikipe-tan}{Wikipe-tan} \textendash{ ウィキペたん }\textendash{ }}
+  \caption[Caption for LOF]{\href{https://en.wikipedia.org/wiki/Wikipedia:Wikipe-tan}{Wikipe-tan} \textendash{ウィキペたん}\textendash{}}
 \end{figure}
 
-Une nékoe \textendash{ ねこみみ }\textendash{ } est un persona d'animé japonais avec des traits de chat
-\textendash{ mimikko
+Une nékoe \textendash{ねこみみ}\textendash{} est un persona d'animé japonais avec des traits de chat
+\textendash{mimikko
 	\footnote{ Kemonomimi ou mimikko est un personnage humain d'animé avec les caractéristiques d'un animal telles que sa personnalité ou encore son physique
-		\textendash{ 獣耳 }\textendash.
+		\textendash{獣耳}\textendash.
 			}} \textendash.
 
 Le GlyphArt est l'écriture d'une image via des caractères compris dans l'Unicode privé, ce projet démontre ce procédé via
-\href{https://limaconoob.github.io/Image2font}{Image2font}.
+\href{https://limaconoob.github.io/Image2font}{Image2font}. \\
 
-$\name$ est une programmeuse nékoe fictive de terminal inventée pour assister des utilisateurs.
+L'\href{https://fr.wikipedia.org/wiki/SVG_OpenType}{SVG OpenType} est un format ouvert de police de caractères vectorielles multicolors. \\
+
+$\name$ est une programmeuse nékoe fictive de terminal inventée pour assister des utilisateurs. \\
 
 \section{Introduction}
 \thispagestyle{empty}
 $\name$ est une nékoe de terminal qui a pour but d'apporter les Arts, la Culture et une assistance à qui saura utiliser un shell.
 Humanisée d’émotions et fondée sur l'expérience de la \href{https://fr.wikipedia.org/wiki/Chambre_chinoise}{chambre chinoise}, celle-ci sera donc instruite via des bibliotèques.
 
-L'organisation GitHub $\organization$ de philosophie \href{https://fr.wikipedia.org/wiki/Libriste}{libriste} fut créée pour distribuer et maintenir communautairement les dépôts nécessaires au développement d'une Nékoe de terminal.
-
+L'organisation GitHub $\organization$ de philosophie \href{https://fr.wikipedia.org/wiki/Libriste}{libriste} fut créée pour distribuer et maintenir communautairement les dépôts nécessaires au développement de cette Nékoe de terminal.
 
 \begin{figure}[!ht]
     \begin{minipage}{\textwidth}
     \centering
-		\begin{tabular}{p{.10\textwidth}p{.90\textwidth}}
-			\textbf{\href{https://github.com/Arukana/book/tree/documentation}{Book}} & La documentation du projet $\program$. \\
-            \textbf{\href{https://github.com/Arukana/PtyProc}{PtyProc}} & L'\href{https://fr.wikipedia.org/wiki/Middleware}{intergiciel} \textendash{ \href{https://en.wikipedia.org/wiki/Middleware}{Middleware} }\textendash{ } et l'\href{https://fr.wikipedia.org/wiki/Backend}{arrière-plan} \textendash{ back-end  }\textendash{ } de l'émulateur du terminal \href{https://fr.wikipedia.org/wiki/VT100}{VT100}. \\
+		\begin{tabular}{p{.10\textwidth}p{.85\textwidth}}
+			\textbf{\href{https://github.com/Arukana/book}{Book}} & La documentation du projet $\program$. \\
+            \textbf{\href{https://github.com/Arukana/PtyProc}{PtyProc}} & L'\href{https://fr.wikipedia.org/wiki/Middleware}{intergiciel} \textendash{\href{https://en.wikipedia.org/wiki/Middleware}{Middleware}}\textendash{ } et l'\href{https://fr.wikipedia.org/wiki/Backend}{arrière-plan} \textendash{back-end}\textendash{ } de l'émulateur du terminal \href{https://fr.wikipedia.org/wiki/VT100}{VT100}. \\
             \textbf{\href{https://github.com/Arukana/Editor}{Editor}} & L'éditeur et la bibliothèque d'expression de la nékoe. \\
-            \textbf{\href{https://github.com/Arukana/Neko.git}{Neko}} & Le programme $\program$. \\
-            \textbf{\href{https://github.com/Arukana/LibNya.git}{LibNya}} & La bibliothèque dynamique de teste du programme $\program$. \\
-            \textbf{\href{https://github.com/Arukana/ffi.git}{ffi}} & L'\href{https://fr.wikipedia.org/wiki/Header}{en-têtes} \textendash{ \href{https://en.wikipedia.org/wiki/Header_(computing)}{header} }\textendash{ } sont les déclarations des structures et énumérations de la nékoe. \\
+            \textbf{\href{https://github.com/Arukana/Neko}{Neko}} & Le programme $\program$. \\
+            \textbf{\href{https://github.com/Arukana/LibNya}{LibNya}} & La bibliothèque dynamique de teste du programme $\program$. \\
+            \textbf{\href{https://github.com/Arukana/ffi}{ffi}} & L'\href{https://fr.wikipedia.org/wiki/Header}{en-têtes} \textendash{ \href{https://en.wikipedia.org/wiki/Header_(computing)}{header} }\textendash{ } sont les déclarations des structures et énumérations de la nékoe. \\
 	        \textbf{\href{https://github.com/Arukana/Image2font}{Image2font}} & Le convertisseur d'images en une police d’écriture. \\
             \textbf{\href{https://github.com/Arukana/nTerm}{nTerm}} & L'\href{https://fr.wikipedia.org/wiki/Interface_graphique}{interface graphique} de émulateur. \\
         \end{tabular}
 		\caption*{
+            Ces dépôt sont interdépendant tel que : \\
 			\begin{forest}
-			    [Terminal
-					[Neko
-					    [Editeur]
-                        [PtyProc
-						    [Pty]
+			    [\href{https://github.com/Arukana/nTerm}{nTerm}
+					[\href{https://github.com/Arukana/Neko}{Neko}
+					    [\href{https://github.com/Arukana/Editor}{Editor}]
+                        [\href{https://github.com/Arukana/PtyProc}{PtyProc}
+						    [\href{https://github.com/hibariya/pty-rs}{Pty}]
 					    ]
 					]
 			    ]
+			\end{forest}
+			\begin{forest}
+                [\href{https://github.com/Arukana/LibNya}{LibNya}
+                    [\href{https://github.com/Arukana/ffi}{ffi}]
+                ]
 			\end{forest}
 		}
     \end{minipage}
@@ -153,79 +174,138 @@ L'organisation GitHub $\organization$ de philosophie \href{https://fr.wikipedia.
 
 \subsection{Utilisation}
 
-La constante d’environnement {\textit{NEKO\_PATH}} pourra être définie à \enquote{HOME/.neko} et comprendra les sous-répertoires {\textit{lib}}, {\textit{rep}}, {\textit{texels}} et {\textit{sprites}}. Sinon, les \href{https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle}{bibliothèques} de l'organisation $\name$ ceux reporterons à constante \textit{CARGO\_MANIFEST\_DIR} de valeurs relatives aux répertoires contenant les \href{https://en.wikipedia.org/wiki/Manifest_file}{fichiers manifests}.
+La constante d’environnement {\textit{\$NEKO\_PATH}} pourra être définie à \enquote{\$HOME/.neko} et comprendra les sous-répertoires {\textit{lib}}, {\textit{rep}}, {\textit{texels}} et {\textit{sprites}}. Sinon, les \href{https://fr.wikipedia.org/wiki/Biblioth%C3%A8que_logicielle}{bibliothèques} de l'organisation $\organization$ ceux reporterons à la constante \href{http://doc.crates.io/environment-variables.html}{\textit{\$CARGO\_MANIFEST\_DIR}} de valeurs relatives aux répertoires contenant les \href{https://en.wikipedia.org/wiki/Manifest_file}{fichiers manifests}.
 
+\begin{figure}[!ht]
+    \begin{minipage}{\textwidth}
+    \centering
+        \begin{tabular}{p{.15\textwidth}p{.85\textwidth}}
+			\href{https://github.com/Arukana/Editor/tree/master/assets/sprites}{\textbf{sprite}} & Les sprites de la nékoe. \\
+			\href{https://github.com/Arukana/Editor/tree/master/assets/texels}{\textbf{texels}} & Les texels de la nékoe. \\
+			\textbf{lib} & Les sources des progiciels. \\
+			\textbf{rep} & Les bibliothèques dynamiques des progiciels.
+        \end{tabular}
+    \end{minipage}
+\end{figure}
+
+\newpage
 \subsubsection{Programme $\program$ \textendash{\href{https://fr.wikipedia.org/wiki/Interface_en_ligne_de_commande}{CLI}}\textendash{}}
 
 \begin{figure}[!ht]
     \begin{minipage}{\textwidth}
     \centering
-        \begin{tabular}{p{.15\textwidth}p{.20\textwidth}p{.65\textwidth}}
+        \begin{tabular}{p{.15\textwidth}p{.20\textwidth}p{.55\textwidth}}
                 \textbf{\textendash\textendash help} && Imprime ce menu d'aide \\
                 \textbf{\textendash\textendash version, \textendash{V}} && Imprime la version du programme $\program$ \\
                 \textbf{\textendash\textendash command, \textendash{c}} & [/bin/zsh] & Précise le processus fils. \\
-                \rowcolor{yellow}
+                \violet
                 \textbf{\textendash\textendash repeat, \textendash{r}} & [1000] & Précise le temps de répétition du maintien d'une touche enfoncée tel que $\{2\dots{}N\}$. \\
-                \rowcolor{yellow}
+                \violet
                 \textbf{\textendash\textendash interval, \textendash{i}} & [1000] & Précise le temps d'intervalle durant les répétitions tel que $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
         \end{tabular}
     \end{minipage}
-    \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
+    \caption[Caption]{ \colorbox{violet!10}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
 \end{figure}
-
-%\subsection{\href{https://fr.wikipedia.org/wiki/Interpr%C3%A8te_(informatique)}{Interpréteur}}
 
 \subsubsection{Commande $\program$ \textendash{\href{https://en.wikipedia.org/wiki/Shell_builtin}{builtin}\textendash{}}}
 
-Le programme $\program$ substitura la commande \enquote{neko}(1) pour son processus enfant uniquement et qui sera à l'occurrence notre \href{https://fr.wikipedia.org/wiki/Interpr%C3%A9teur_de_commandes}{interpréteur de commandes}. \\
+Le programme $\program$ substitura la commande neko(1) pour son processus enfant uniquement et qui sera à l'occurrence notre \href{https://fr.wikipedia.org/wiki/Interpr%C3%A9teur_de_commandes}{interpréteur de commandes}.
 
-Cette commande comprend les options si-suivantes: \\
-
+Cette commande comprend les options si-suivantes:
 \begin{figure}[!ht]
     \begin{minipage}{\textwidth}
     \centering
-		\begin{tabular}{p{.30\textwidth}p{.16\textwidth}p{.54\textwidth}}
-			\textbf{install <url>} & https://git... & Installe depuis dépôt distant un plugiciel. \\
+		\begin{tabular}{p{.30\textwidth}p{.16\textwidth}p{.44\textwidth}}
+			\textbf{install <url>} & https://git... & Installe depuis dépôt git un plugiciel. \\
 			\textbf{uninstall <author@libname>} & Arukana@LibNya & Désinstalle les sources et la bibliothèque dynamique d'un plugiciel \textendash{} \href{https://fr.wikipedia.org/wiki/Plugin}{plugin} \textendash{}. \\
 			\textbf{mount <author@libname> [<priority>]} & Arukana@LibNya 1 & Monte une bibliothèque dynamique avec une priorité de niveau zero. \\
 			\textbf{unmount <author@libname>} & Arukana@LibNya & Démonte une bibliothèque dynamique. \\
-			\textbf[\textbf{update <author@libname>}] & Arukana@LibNya & Révise une bibliothèque dynamique. \\
+			\textbf{update <author@libname>} & Arukana@LibNya & Révise une bibliothèque dynamique. \\
 		\end{tabular}
     \end{minipage}
+    \caption[Caption] {
+		\enquote{install} implicite \enquote{mount}. \\
+		\enquote{uninstall} implicite \enquote{unmount}.
+    }
 \end{figure}
 
-\subsection{Interface de fonctions dynamiques \textendash{\href{https://en.wikipedia.org/wiki/Foreign_function_interface}{FFI}}\textendash{}}
+\newpage
+\subsection{Programmeur}
+
+Les sources d'une bibliothèque dynamique devront toujours comprendre un \enquote{Makefile} et un fichier manifest du nom de \enquote{Neko.toml}. \\
+
+\begin{itemize}
+	\item Le Makefile devra compiler une bibliothèque nommé \enquote{author@repository.dylib} via la règle \textit{default}.
+	\item Une Manifest pourra configurer son niveau de priorité via la variable priority qui sera de valeur 0 par défaut.
+\end{itemize}
+
+\subsubsection{Fonctions dynamiques \textendash{\href{https://en.wikipedia.org/wiki/Foreign_function_interface}{FFI}}\textendash{}}
+
+Le bibliothèque LibNya est pour ses branches \href{https://github.com/Arukana/LibNya/tree/c}{C} et \href{https://github.com/Arukana/LibNya}{Rust} un exemple d'utilisation de la liste des fonctions si-suivantes : \\
 
 \begin{figure}[!ht]
     \begin{minipage}{\textwidth}
     \centering
-        \begin{tabular}{p{.50\textwidth}p{.50\textwidth}}
-            \textbf{void build (t\_lbstat *lib, void **data)} & A l'installation du module \\
-            \textbf{void start (t\_lbstat *lib, void **data)} & Au démarrage du programme Neko \\
-            \textbf{void idle (t\_lbstat *lib, void **data)} & Appel régulier en cas d'absence d'événements \\
-            \textbf{void command (t\_lbstat *lib, void **data, char *command)} & Une commande est entrée au shell(1) \\
-            \textbf{void end (t\_lbstat *lib, void **data)} & A l'arrêt du programme Neko \\
-            \textbf{void destroy (t\_lbstat *lib, void **data)} & A la désinstallation du module \\
+        \begin{tabular}{p{.40\textwidth}p{.50\textwidth}}
+            \textbf{void build (t\_lbstat *lib, void **data)} & Quand la bibliothèque est installée. \\
+            \textbf{void start (t\_lbstat *lib, void **data)} & Quand la bibliothèque est montée. \\
+            \textbf{void idle (t\_lbstat *lib, void **data)} & Pour chaque cycle compris entre chaques événements. \\
+            \textbf{void command (t\_lbstat *lib, void **data, char *lined)} & Quand une ligne va être envoyée. \\
+            \textbf{void end (t\_lbstat *lib, void **data)} & Quand la la bibliothèque est démontée. \\
+            \textbf{void uninstall (t\_lbstat *lib, void **data)} & Quand la bibliothèque va être désinstallé. \\
+            \textbf{void keyUnicodeDown (t\_lbstat *lib, void **data, unsigned long long key)} & Quand une touche est enfoncée. \\
+            \textbf{void keyStringDown (t\_lbstat *lib, void **data, char *copy)} & Quand est texte est envoyé. \\
+            \violet
+            \textbf{void keyRepeatDown (t\_lbstat *lib, void **data, unsigned int repeat)} & Quand une touche est maintenue enfoncée $\{2\dots{}N\}$. \\
+            \violet
+            \textbf{void keyIntervalDown (t\_lbstat *lib, void **data, long long repeat)} & Qurant \textit{KeyDownRepeat}, donne l'intervalle : $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
+            \textbf{void mousePress (t\_lbstat *lib, void **data, unsigned short cartesian[2], int code)} & Quand le curseur est pressé à une coordonnée cartésienne. \\
+            \textbf{void display (t\_lbstat *lib, void **data, char *output)} & Quand est texte est imprimé depuis la sortie standard du processus fils. \\
+            \textbf{void process (t\_lbstat *lib, void **data, char *name, pid\_t pid)} & Quand le processus courrant change. \\
+            \textbf{void resized (t\_lbstat *lib, void **data, Winszed *win)} & Quand la taille de la fenêtre change. \\
         \end{tabular}
     \end{minipage}
-%    \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
+   \caption[Caption]{ \colorbox{violet!10}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
 \end{figure}
 
+\newpage
 \section{$\dependency$}
 
- est l'interface d'une liste de primitives telles que des texels et des sprites qui pourront se combiner en nouveaux sprites. \\
-
-L'$\dependency$ est à la fois : \\
+L'$\dependency$ est à la fois :
 
 \begin{enumerate}
 	\item Un programme qui selon une liste de primitive permettra de devirer des expressions en commandes.
-	Interface utilisateur en mode texte -\href{https://en.wikipedia.org/wiki/Text-based_user_interface}{TUI}-.
-	\item Une bibliothèque et dépenpence du projet Neko, qui chargera un dictionnaire de \href{https://fr.wikipedia.org/wiki/Sprite_(jeu_vid%C3%A9o)}{lutin} -\href{https://en.wikipedia.org/wiki/Sprite_(computer_graphics)}{sprite}-.
+	Interface utilisateur en mode texte \textendash\href{https://en.wikipedia.org/wiki/Text-based_user_interface}{TUI}\textendash{}.
+	\item Une bibliothèque et dépenpence du projet Neko, qui chargera un dictionnaire de \href{https://en.wikipedia.org/wiki/Sprite_(computer_graphics)}{sprite}.
 \end{enumerate}
 
 \subsection{Programme \href{https://en.wikipedia.org/wiki/Text-based_user_interface}{\textendash{TUI}\textendash{}}}
+L'$\dependency$ comprend une liste de sprite, chacun de 1 à $\maxDraw$ \textendash{SPEC\_MAX\_DRAW}\textendash{} dessins ; un dessin comprenant $\maxXY$ \href{https://fr.wikipedia.org/wiki/Texel_(infographie)}{texels} \textendash{SPEC\_MAX\_XY}\textendash{}. Ainsi, par \href{https://fr.wikipedia.org/wiki/Arrangement_avec_r%C3%A9p%C3%A9tition}{arrangement avec répétition}, nous pourrons definir pour $\maxEmotion$ emotions \textendash{SPEC\_MAX\_EMOTION}\textendash{} notre nombre limite expressions tel que :
 
-L'$\dependency$ comprend une liste d'animation, de un à seize sprites chacuns. Un sprite sera derivé selon des groupes d'émotions, formant ainsi une multitude expressions. La somme des sprites représente la configuration d'une animation. \\*
+\begin{equation}
+	\pgfkeys{/pgf/fpu=true}
+	\overline{\Alpha_{\maxEmotion}^{\maxDrawMulXY}}=\maxDrawMulXY^{\maxEmotion}=\pgfmathparse{(\maxX*\maxY*\maxDraw)^\maxEmotion}\pgfmathresult
+	\pgfkeys{/pgf/fpu=false}
+\end{equation}
+
+\subsubsection{Interface}
+
+L'interface est représentée par :
+
+\begin{itemize}
+	\item Le menu de commandes.
+	\item Une liste déroulante de sprite.
+    \item {
+		\begin{itemize}
+			\item Le numéro, délais en milliseconde et posture d'un dessin.
+			\item Le dessin par caractère, parti du corp et emotion.
+			\item La liste des emotions disponible pour la case courrante.
+		\end{itemize}
+    }
+    \item La somme de toute les emotions non nul par posture pour la sprite courrante. \\
+\end{itemize}
+
+Tel que :
 
 \begin{tabbing}
     Quit <q> \\*
@@ -246,46 +326,50 @@ L'$\dependency$ comprend une liste d'animation, de un à seize sprites chacuns. 
     \symbol{"E028}\symbol{"E029}\symbol{"E02A}\symbol{"E02B}\symbol{"E02C}\symbol{"E02D}\symbol{"E02E}\symbol{"E02F}\symbol{"E030}\symbol{"E031} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
     \\*
     \_S \\*
-    --Talk --NotTalk Heart:Shocked \\*
+    --Talk --NotTalk Heart:Shocked
 \end{tabbing}
+
+La représentation non nul \enquote{--Talk --NotTalk Heart:Shocked} pourra être utilisé via les énumérations \textbf{Part} et \textbf{Emotion} d'écrite par la bibliothèque \href{https://github.com/Arukana/ffi}{ffi} pour reproduire la même expression depuis une bibliothèque dynamique.
+
+\newpage
 
 \subsubsection{Raccourcis clavier}
 
-La saisie est adapté selon la disposition des touches du \href{https://en.wikipedia.org/wiki/ADM-3A}{terminal ADM-3A} de la société \href{https://en.wikipedia.org/wiki/Lear_Siegler}{Lear Siegler}.
+La saisie est adapté selon la disposition des touches du \href{https://en.wikipedia.org/wiki/ADM-3A}{terminal ADM-3A} de la société \href{https://en.wikipedia.org/wiki/Lear_Siegler}{Lear Siegler}. \\
 
 \begin{figure}[!ht]
   \begin{minipage}{\textwidth}
     \centering
-    \begin{tabular}{p{.3\textwidth}p{.7\textwidth}}
+    \begin{tabular}{p{.30\textwidth}p{.65\textwidth}}
         \toprule
         \toprule
             Touche & Description \\
         \midrule
             \Ctrl+\keystroke{q}ou\keystroke{q} & Quitter le programme. \\
-            \rowcolor{yellow}
-            \Ctrl+\keystroke{c}ou\keystroke{c} & Copier la commande dans le presse-papier. \\
-            \Home{}ou\keystroke{g} & Sélectionner la première animation. \\
-            \PgUp{}ou\keystroke{H} & Sélectionner l'animation précédente. \\
-            \PgDown{}ou\keystroke{L} & Sélectionner l'animation suivante. \\
-            \End{}ou\keystroke{G} & Sélectionner la dernière animation. \\
-            \keystroke{\{}ou\keystroke{[} & Sélectionner le sprite précédent. \\
-            \keystroke{\}}ou\keystroke{]} & Sélectionner le sprite suivant. \\
-            \LArrow{}ou\keystroke{h} & Sélectionner la cellule de gauche. \\
-            \UArrow{}ou\keystroke{k} & Sélectionner la cellule du haut. \\
-            \DArrow{}ou\keystroke{j} & Sélectionner la cellule du bas. \\
-            \RArrow{}ou\keystroke{l} & Sélectionner la cellule de droite. \\
-            \keystroke{0}...\keystroke{9} & Changer la cellule courrante. \\
+            \violet
+            \Ctrl+\keystroke{c}ou\keystroke{c} & Copie la commande dans le presse-papier. \\
+            \Home{}ou\keystroke{g} & Sélectionne la première animation. \\
+            \PgUp{}ou\keystroke{H} & Sélectionne l'animation précédente. \\
+            \PgDown{}ou\keystroke{L} & Sélectionne l'animation suivante. \\
+            \End{}ou\keystroke{G} & Sélectionne la dernière animation. \\
+            \keystroke{\{}ou\keystroke{[} & Sélectionne le sprite précédent. \\
+            \keystroke{\}}ou\keystroke{]} & Sélectionne le sprite suivant. \\
+            \LArrow{}ou\keystroke{h} & Sélectionne la cellule de gauche. \\
+            \UArrow{}ou\keystroke{k} & Sélectionne la cellule du haut. \\
+            \DArrow{}ou\keystroke{j} & Sélectionne la cellule du bas. \\
+            \RArrow{}ou\keystroke{l} & Sélectionne la cellule de droite. \\
+            \keystroke{0}...\keystroke{9} & Change l'émotion du groupe de cellules courrant. \\
         \bottomrule
     \end{tabular}
   \end{minipage}
-  \caption[Caption]{ \colorbox{yellow}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{Clipboard}.}
+  \caption[Caption]{ \colorbox{violet!10}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{Clipboard}.}
 \end{figure}
 
-\subsubsection{Bibliothèque}
+\newpage
 
-\footnotetext{En génie logiciel, le langage de modélisation orienté objet unifié de l'anglais
-	\enquote{Unified Modeling Language}
-		\textendash{ UML }\textendash{ } est la représentation schématique d'un programme par de l'orienté objet}
+\subsection{Bibliothèque}
+
+...
 
 \begin{figure}[!ht]
   \centering
@@ -298,6 +382,8 @@ digraph graphic {
   nodeGraphic [label="Struct Graphic<Default + Debug + Clone>\n
     texel: HashMap<Posture, HashMap<Tuple, Vec<Texel>>>,
     sprite: io::Cursor<Vec<(Sheet, Sprite)>>,
+
+    + fn explicite_emotion(&mut self, name: &Sheet, change: &[[Tuple; SPEC_MAX_XY]; SPEC_MAX_DRAW]) -> Option<&Sprite>
   "];
 
   nodeTuple [label="Struct Tuple<Copy + Clone + Debug + Default + Eq + PartialEq + Hash + From>\n
@@ -376,7 +462,7 @@ digraph graphic {
     Playing = b'p',
     Shocked = b'o',
     Sleepy = b's',
-	  Speechless = b'e',
+    Speechless = b'e',
     Surprised = b'u',
   "];
 
@@ -395,8 +481,15 @@ digraph graphic {
   nodeEmotion -> nodeDraw;
 }
   \end{dot2tex}
-  \caption[Caption for LOF]{ Diagramme UML \footnotemark{} simplifié du module graphique. }
+  \caption[Caption for LOF]{
+
+  }
   \label{graphic}
+  \caption[Caption for LOF]{ Diagramme UML \footnotemark{} simplifié du module graphique. }
 \end{figure}
+
+\footnotetext{En génie logiciel, le langage de modélisation orienté objet unifié de l'anglais
+	\enquote{Unified Modeling Language}
+		\textendash{ UML }\textendash{ } est la représentation schématique d'un programme par de l'orienté objet}
 
 \end{document}
