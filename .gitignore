@@ -15,8 +15,14 @@
 # VIM
 *.swp
 *.swo
+*.doc.tex.swn
 
 # OS X
 *.DS_Store
 *._.DS_Store
 *.nfs.*
+
+# Tex
+_minted-neko-a4/
+neko-a4.pyg.lst
+neko-a4.pyg.sty
