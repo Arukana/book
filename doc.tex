@@ -247,22 +247,23 @@ Le bibliothèque LibNya est pour ses branches \href{https://github.com/Arukana/L
     \begin{minipage}{\textwidth}
     \centering
         \begin{tabular}{p{.40\textwidth}p{.50\textwidth}}
-            \textbf{void build (t\_lbstat *lib, void **data)} & Quand la bibliothèque est installée. \\
-            \textbf{void start (t\_lbstat *lib, void **data)} & Quand la bibliothèque est montée. \\
-            \textbf{void idle (t\_lbstat *lib, void **data)} & Pour chaque cycle compris entre chaques événements. \\
-            \textbf{void command (t\_lbstat *lib, void **data, char *lined)} & Quand une ligne va être envoyée. \\
-            \textbf{void end (t\_lbstat *lib, void **data)} & Quand la la bibliothèque est démontée. \\
+            \textbf{void install (t\_lbstat *lib, void **data)} & Quand la bibliothèque est installée. \\
             \textbf{void uninstall (t\_lbstat *lib, void **data)} & Quand la bibliothèque va être désinstallé. \\
-            \textbf{void keyUnicodeDown (t\_lbstat *lib, void **data, unsigned long long key)} & Quand une touche est enfoncée. \\
-            \textbf{void keyStringDown (t\_lbstat *lib, void **data, char *copy)} & Quand est texte est envoyé. \\
+            \textbf{void mount (t\_lbstat *lib, void **data)} & Quand la bibliothèque est montée. \\
+            \textbf{void unmount (t\_lbstat *lib, void **data)} & Quand la la bibliothèque est démontée. \\
+            \textbf{void idle (t\_lbstat *lib, void **data)} & Pour chaque cycle compris entre chaques événements. \\
+            \textbf{void resized (t\_lbstat *lib, void **data, Winszed *win)} & Quand la taille de la fenêtre change. \\
+            \textbf{void process (t\_lbstat *lib, void **data, char *name, pid\_t pid)} & Quand le processus courrant change. \\
+            \textbf{void command (t\_lbstat *lib, void **data, char *lined)} & Quand une ligne va être envoyée. \\
+            \textbf{void keyUnicodeDown (t\_lbstat *lib, void **data, unsigned long long key)} & Quand une touche enfoncée va être envoyée. \\
+            \textbf{void keyStringDown (t\_lbstat *lib, void **data, char *copy)} & Quand un texte va être envoyé. \\
             \violet
             \textbf{void keyRepeatDown (t\_lbstat *lib, void **data, unsigned int repeat)} & Quand une touche est maintenue enfoncée $\{2\dots{}N\}$. \\
             \violet
             \textbf{void keyIntervalDown (t\_lbstat *lib, void **data, long long repeat)} & Qurant \textit{KeyDownRepeat}, donne l'intervalle : $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
             \textbf{void mousePress (t\_lbstat *lib, void **data, unsigned short cartesian[2], int code)} & Quand le curseur est pressé à une coordonnée cartésienne. \\
-            \textbf{void display (t\_lbstat *lib, void **data, char *output)} & Quand est texte est imprimé depuis la sortie standard du processus fils. \\
-            \textbf{void process (t\_lbstat *lib, void **data, char *name, pid\_t pid)} & Quand le processus courrant change. \\
-            \textbf{void resized (t\_lbstat *lib, void **data, Winszed *win)} & Quand la taille de la fenêtre change. \\
+            \textbf{void input (t\_lbstat *lib, void **data, char *output)} & Quand un texte va être imprimé sur l'entrée standard du processus fils. \\
+            \textbf{void output (t\_lbstat *lib, void **data, char *output)} & Quand un texte est imprimé depuis la sortie standard du processus fils. \\
         \end{tabular}
     \end{minipage}
    \caption[Caption]{ \colorbox{violet!10}{\phantom{\_}} Fonctionnalité supplémentaire \enquote{keyboard-time}.}
