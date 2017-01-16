@@ -279,8 +279,8 @@ L'$\dependency$ est à la fois :
 	\item Une bibliothèque et dépenpence du projet Neko, qui chargera un dictionnaire de \href{https://en.wikipedia.org/wiki/Sprite_(computer_graphics)}{sprite}.
 \end{enumerate}
 
-\subsection{Programme \href{https://en.wikipedia.org/wiki/Text-based_user_interface}{\textendash{TUI}\textendash{}}}
-L'$\dependency$ comprend une liste de sprite, chacun de 1 à $\maxDraw$ \textendash{SPEC\_MAX\_DRAW}\textendash{} dessins ; un dessin comprenant $\maxXY$ \href{https://fr.wikipedia.org/wiki/Texel_(infographie)}{texels} \textendash{SPEC\_MAX\_XY}\textendash{}. Ainsi, par \href{https://fr.wikipedia.org/wiki/Arrangement_avec_r%C3%A9p%C3%A9tition}{arrangement avec répétition}, nous pourrons definir pour $\maxEmotion$ emotions \textendash{SPEC\_MAX\_EMOTION}\textendash{} notre nombre limite expressions tel que :
+\subsection{Programme}
+L'$\dependency$ comprend une liste de sprite, chacun de 1 à $\maxDraw$ \textendash{SPEC\_MAX\_DRAW}\textendash{} dessins ; un dessin comprenant $\maxXY$ \href{https://fr.wikipedia.org/wiki/Texel_(infographie)}{texels} \textendash{SPEC\_MAX\_XY}\textendash{}. Ainsi, par \href{https://fr.wikipedia.org/wiki/Arrangement_avec_r%C3%A9p%C3%A9tition}{arrangement avec répétition}, nous pourrons definir pour $\maxEmotion$ emotions \textendash{SPEC\_MAX\_EMOTION}\textendash{} notre nombre limite expressions à :
 
 \begin{equation}
 	\pgfkeys{/pgf/fpu=true}
@@ -293,7 +293,7 @@ L'$\dependency$ comprend une liste de sprite, chacun de 1 à $\maxDraw$ \textend
 L'interface est représentée par :
 
 \begin{itemize}
-	\item Le menu de commandes.
+	\item Un menu de commandes.
 	\item Une liste déroulante de sprite.
     \item {
 		\begin{itemize}
