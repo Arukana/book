@@ -16,6 +16,7 @@
 *.swp
 *.swo
 *.doc.tex.swn
+*.doc.tex.swm
 
 # OS X
 *.DS_Store

@@ -199,7 +199,7 @@ La constante d’environnement {\textit{\$NEKO\_PATH}} pourra être définie à 
                 \textbf{\textendash\textendash version, \textendash{V}} && Imprime la version du programme $\program$ \\
                 \textbf{\textendash\textendash command, \textendash{c}} & [/bin/zsh] & Précise le processus fils. \\
                 \violet
-                \textbf{\textendash\textendash repeat, \textendash{r}} & [1000] & Précise le temps de répétition du maintien d'une touche enfoncée tel que $\{2\dots{}N\}$. \\
+                \textbf{\textendash\textendash repeat, \textendash{r}} & [1000] & Précise le temps de répétition du maintien d'une touche enfoncée tel que $\{2, \ldots{}, N\}$. \\
                 \violet
                 \textbf{\textendash\textendash interval, \textendash{i}} & [1000] & Précise le temps d'intervalle durant les répétitions tel que $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
         \end{tabular}
@@ -229,16 +229,25 @@ Cette commande comprend les options si-suivantes:
     }
 \end{figure}
 
-\newpage
 \subsection{Programmeur}
 
-Les sources d'une bibliothèque dynamique devront toujours comprendre un \enquote{Makefile} et un fichier manifest du nom de \enquote{Neko.toml}. \\
+Les sources d'une bibliothèque dynamique devront toujours comprendre : \\
 
 \begin{itemize}
-	\item Le Makefile devra compiler une bibliothèque nommé \enquote{author@repository.dylib} via la règle \textit{default}.
-	\item Une Manifest pourra configurer son niveau de priorité via la variable priority qui sera de valeur 0 par défaut.
+	\item Un Makefile devra compiler une bibliothèque nommé \enquote{author@repository.dylib} via la règle \textit{default}.
+	\item Un Manifest nommé \enquote{Neko.toml} \textendash{}\href{https://github.com/toml-lang/toml#toml}{TOML}\textendash{} et contenant les attributs facultatifs ci-suivants :
+	\begin{figure}[!ht]
+		\begin{minipage}{\textwidth}
+		\centering
+			\begin{tabular}{p{.40\textwidth}p{.50\textwidth}}
+				\textbf{priority} = 0 & De type \href{https://github.com/toml-lang/toml#user-content-integer}{Integer} compris entre $\{-(2^{64}-1), \ldots{}, 2^{63}-1\}$ (Voir la \href{http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf}{spécification ISO/IEC 9899 TC3} ;\S{5.2.4.2.1}). \\
+                \textbf{[dependencies.name]} \\ git = "https://git..." & De type \href{https://github.com/toml-lang/toml#inline-table}{Inline Table} et décrivant une dépendence. \\
+			\end{tabular}
+		\end{minipage}
+	\end{figure}
 \end{itemize}
 
+\newpage
 \subsubsection{Fonctions dynamiques \textendash{\href{https://en.wikipedia.org/wiki/Foreign_function_interface}{FFI}}\textendash{}}
 
 Le bibliothèque LibNya est pour ses branches \href{https://github.com/Arukana/LibNya/tree/c}{C} et \href{https://github.com/Arukana/LibNya}{Rust} un exemple d'utilisation de la liste des fonctions si-suivantes : \\
