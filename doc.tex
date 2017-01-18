@@ -308,11 +308,11 @@ L'interface est représentée par :
     \item {
 		\begin{itemize}
 			\item Le numéro, délais en milliseconde et posture d'un dessin.
-			\item Le dessin par caractère, parti du corp et emotion.
+			\item Le dessin par caractère \textendash\href{https://en.wikipedia.org/wiki/Private_Use_Areas}{PUA}\footnote{ Caractère privé compris entre $\{U+E000, \ldots{}, U+F8FF\}$ (Voir la spécification \href{http://www.unicode.org/versions/Unicode9.0.0/ch03.pdf}{The Unicode Standard Version 9.0}; Chapt. Properties \S{3.5} \textendash{} Private Use. }\textendash{}, parti du corp et emotion.
 			\item La liste des emotions disponible pour la case courrante.
 		\end{itemize}
     }
-    \item La somme de toute les emotions non nul par posture pour la sprite courrante. \\
+    \item La somme de toute les emotions non nul par posture pour la sprite courrante.
 \end{itemize}
 
 Tel que :
@@ -326,16 +326,14 @@ Tel que :
     \symbol{"E014}\symbol{"E015}\symbol{"E016}\symbol{"E017}\symbol{"E018}\symbol{"E019}\symbol{"E01A}\symbol{"E01B}\symbol{"E01C}\symbol{"E01D} \_\_\_\_\_\_\_\_Mo\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
     \symbol{"E01E}\symbol{"E01F}\symbol{"E020}\symbol{"E021}\symbol{"E022}\symbol{"E023}\symbol{"E024}\symbol{"E025}\symbol{"E026}\symbol{"E027} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
     \symbol{"E028}\symbol{"E029}\symbol{"E02A}\symbol{"E02B}\symbol{"E02C}\symbol{"E02D}\symbol{"E02E}\symbol{"E02F}\symbol{"E030}\symbol{"E031} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
-    \\*
-    S\_ \\*
+    o\_ \\*
     1 - PT0.200S: NotTalk \\*
-    \symbol{"E000}\symbol{"E001}\symbol{"E002}\symbol{"E003}\symbol{"E004}\symbol{"E005}\symbol{"E006}\symbol{"E007}\symbol{"E008}\symbol{"E009} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ SSS\_\_\_\_\_\_\_ \\*
-    \symbol{"E00A}\symbol{"E00B}\symbol{"E00C}\symbol{"E00D}\symbol{"E00E}\symbol{"E00F}\symbol{"E010}\symbol{"E011}\symbol{"E012}\symbol{"E013} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ SSS\_\_\_\_\_\_\_ \\*
+    \symbol{"E000}\symbol{"E001}\symbol{"E002}\symbol{"E003}\symbol{"E004}\symbol{"E005}\symbol{"E006}\symbol{"E007}\symbol{"E008}\symbol{"E009} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ ooo\_\_\_\_\_\_\_ \\*
+    \symbol{"E00A}\symbol{"E00B}\symbol{"E00C}\symbol{"E00D}\symbol{"E00E}\symbol{"E00F}\symbol{"E010}\symbol{"E011}\symbol{"E012}\symbol{"E013} HeHeHe\_\_\_\_\_\_\_\_\_\_\_\_\_\_ ooo\_\_\_\_\_\_\_ \\*
     \symbol{"E014}\symbol{"E015}\symbol{"E016}\symbol{"E017}\symbol{"E018}\symbol{"E019}\symbol{"E01A}\symbol{"E01B}\symbol{"E01C}\symbol{"E01D} \_\_\_\_\_\_\_\_Mo\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
     \symbol{"E01E}\symbol{"E01F}\symbol{"E020}\symbol{"E021}\symbol{"E022}\symbol{"E023}\symbol{"E024}\symbol{"E025}\symbol{"E026}\symbol{"E027} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
     \symbol{"E028}\symbol{"E029}\symbol{"E02A}\symbol{"E02B}\symbol{"E02C}\symbol{"E02D}\symbol{"E02E}\symbol{"E02F}\symbol{"E030}\symbol{"E031} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \_\_\_\_\_\_\_\_\_\_ \\*
-    \\*
-    \_S \\*
+    \_o \\*
     --Talk --NotTalk Heart:Shocked
 \end{tabbing}
 
