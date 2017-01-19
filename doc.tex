@@ -262,14 +262,15 @@ Le bibliothèque LibNya est pour ses branches \href{https://github.com/Arukana/L
             \textbf{void unmount (t\_lbstat *lib, void **data)} & Quand la la bibliothèque est démontée. \\
             \textbf{void idle (t\_lbstat *lib, void **data)} & Pour chaque cycle compris entre chaques événements. \\
             \textbf{void process (t\_lbstat *lib, void **data, char *name, pid\_t pid)} & Quand le processus courrant change. \\
-            \textbf{void command (t\_lbstat *lib, void **data, char *lined)} & Quand une ligne va être envoyée. \\
+            \textbf{void command (t\_lbstat *lib, void **data, char *lined)} & Quand une ligne de commande va être saisie. \\
             \textbf{void key\_unicode\_down (t\_lbstat *lib, void **data, unsigned long long key)} & Quand une touche enfoncée va être envoyée. \\
             \textbf{void key\_string\_down (t\_lbstat *lib, void **data, char *copy)} & Quand un texte va être envoyé. \\
             \violet
             \textbf{void key\_repeat\_down (t\_lbstat *lib, void **data, unsigned int repeat)} & Quand une touche est maintenue enfoncée $\{2\dots{}N\}$. \\
             \violet
-            \textbf{void key\_interval\_down (t\_lbstat *lib, void **data, long long repeat)} & Qurant \textit{KeyDownRepeat}, donne l'intervalle : $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
-            \textbf{void mouse\_press (t\_lbstat *lib, void **data, unsigned short cartesian[2], int code)} & Quand le curseur est pressé à une coordonnée cartésienne. \\
+            \textbf{void key\_interval\_down (t\_lbstat *lib, void **data, long long repeat)} & Quand \textit{KeyDownRepeat}, donne l'intervalle : $\sum_{i=repeat}^{\infty} U_{interval}\times{}i$. \\
+            \textbf{void mouse\_pressed (t\_lbstat *lib, void **data, t\_mouse code, unsigned short cartesian[2])} & Quand le curseur va être pressé. \\
+            \textbf{void mouse\_released (t\_lbstat *lib, void **data, t\_mouse code, unsigned short cartesian[2])} & Quand le curseur va être relâché. \\
             \textbf{void input (t\_lbstat *lib, void **data, char *output)} & Quand un texte va être imprimé sur l'entrée standard du processus fils. \\
             \textbf{void output (t\_lbstat *lib, void **data, char *output)} & Quand un texte est imprimé depuis la sortie standard du processus fils. \\
             \textbf{void resized (t\_lbstat *lib, void **data, Winszed *win)} & Quand la taille de la fenêtre change. \\

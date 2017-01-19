@@ -17,6 +17,7 @@
 *.swo
 *.doc.tex.swn
 *.doc.tex.swm
+*.doc.tex.swl
 
 # OS X
 *.DS_Store
@@ -27,3 +28,4 @@
 _minted-neko-a4/
 neko-a4.pyg.lst
 neko-a4.pyg.sty
+
