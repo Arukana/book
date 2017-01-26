@@ -36,4 +36,4 @@ after_success:
   - git add neko-c5.pdf
   - git status
   - git commit -m "Initial gh-pages"
-  - git push --force --quiet "https://${GH_TOKEN}@github.com/Arukana/book.git" gh-pages
+  - git push --force --quiet "https://${GH_TOKEN}@github.com/Arukana/book.git" master:gh-pages
