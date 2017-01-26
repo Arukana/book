@@ -34,5 +34,6 @@ after_success:
   - git init
   - git add neko-a4.pdf
   - git add neko-c5.pdf
+  - git status
   - git commit -m "Initial gh-pages"
-  - git push --force --quiet "https://${GH_TOKEN}@github.com/Arukana/book.git" master:gh-pages
+  - git push --force --quiet "https://${GH_TOKEN}@github.com/Arukana/book.git" gh-pages
