@@ -31,7 +31,7 @@ after_success:
   - git config user.name "Arukana"
   - git config user.email "arukana@users.noreply.github.com"
   - git checkout gh-pages
-  - git add neko-a4.pdf
-  - git add neko-c5.pdf
+  - git add --force neko-a4.pdf
+  - git add --force neko-c5.pdf
   - git commit -m "Initial gh-pages"
   - git push --force --quiet "https://${GH_TOKEN}@github.com/Arukana/book.git" origin gh-pages
