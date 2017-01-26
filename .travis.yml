@@ -26,3 +26,11 @@ install:
 script:
   - make a4
   - make c5
+
+after_success:
+  - git checkout gh-pages
+  - git remote add origin https://arukana:$GH_TOKEN@github.com/Arukana/book.git
+  - git add neko-a4.pdf
+  - git add neko-c5.pdf
+  - git commit -m "Initial gh-pages"
+  - git push origin gh-pages
